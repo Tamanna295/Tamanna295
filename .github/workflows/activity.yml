@@ -20,6 +20,7 @@ jobs:
         uses: jamesgeorge007/github-activity-readme@master
         with:
           GH_USERNAME: Tamanna295
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit README
         run: |
