@@ -1,0 +1,30 @@
+name: Update README with activity
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    name: Update README
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate GitHub Activity
+        uses: Shpota/github-activity-generator@main
+        with:
+          GITHUB_USERNAME: Tamanna295
+
+      - name: Commit changes
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Update activity" || exit 0
+          git push
